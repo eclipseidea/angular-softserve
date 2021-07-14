@@ -1,0 +1,293 @@
+<div class="modal fade"
+     id="staticBackdrop"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="staticBackdropLabel">
+          {{modalSettings.title}}
+        </h5>
+        <button type="button"
+                data-bs-dismiss="modal"
+                (click)="resetUser()"
+                class="btn-close"
+                aria-label="Close">
+        </button>
+      </div>
+
+      <div class="modal-body col-12 pe-auto">
+        <div class="col-12 ">
+          <div class=" row justify-content-end">
+            <div class="cl-btn-3">
+              <span class="top"></span>
+              <span class="bot"></span>
+            </div>
+          </div>
+
+          <form (ngSubmit)="submit()" [formGroup]="profileForm" novalidate>
+            <div class="form-group col-12">
+              <label class="col-8 mt-2"
+                     for="name">
+                *Name:
+              </label>
+              <input type="text"
+                     class="form-control col-8 mt-1"
+                     formControlName="name"
+                     id="name"
+                     placeholder="First name">
+
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched">
+                invalid field name!
+              </div>
+
+            </div>
+
+            <div class="form-group 	col-12 mt-1">
+              <label class="col-8 m1 mt-2"
+                     for="lastName">
+                *Sure name:
+              </label>
+              <input type="text"
+                     class="form-control col-10 mt-1"
+                     formControlName="lastName"
+                     id="lastName"
+                     placeholder="Last name">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['lastName'].invalid && profileForm.controls['lastName'].touched">
+                invalid field last name!
+              </div>
+            </div>
+
+            <div class="form-group 	col-12-mt-1">
+              <label class="col-8 m1 mt-2"
+                     for="email">
+                *Email:
+              </label>
+              <input type="email"
+                     class="form-control col-10 mt-1"
+                     formControlName="email"
+                     id="email"
+                     placeholder="some@gmail.com">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['email'].invalid && profileForm.controls['email'].touched">
+                invalid field email!
+              </div>
+
+            </div>
+
+            <div class="form-group 	col-12">
+              <label class="col-8 m1 mt-2"
+                     for="password">
+                *Password:
+              </label>
+              <input type="text"
+                     class="form-control col-10 mt-1"
+                     formControlName="password"
+                     id="password"
+                     placeholder="password">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['password'].invalid && profileForm.controls['password'].touched">
+                invalid field password!
+              </div>
+            </div>
+
+            <div class="mt-4 col-12 d-flex justify-content-end">
+              <button type="button"
+                      class="btn btn-secondary col-2 me-2"
+                      data-bs-dismiss="modal"
+                      [hidden]="modalValue.modalFlag==='update'"
+                      >
+                Close
+              </button>
+              <button type="submit"
+                      [disabled] ="!profileForm.valid"
+                      class="btn btn-primary col-2">
+                {{modalSettings.button_title}}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="modal fade"
+     id="staticBackdrop"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+            id="staticBackdropLabel">
+          {{modalSettings.title}}
+        </h5>
+        <button type="button"
+                data-bs-dismiss="modal"
+                (click)="resetEditedUser()"
+                class="btn-close"
+                aria-label="Close">
+        </button>
+      </div>
+
+      <div class="modal-body col-12 pe-auto">
+        <div class="col-12 ">
+          <div class=" row justify-content-end">
+            <div class="cl-btn-3">
+              <span class="top"></span>
+              <span class="bot"></span>
+            </div>
+          </div>
+
+          <form (ngSubmit)="submit()" [formGroup]="profileForm" novalidate>
+            <div class="form-group col-12">
+              <label class="col-8 mt-2"
+                     for="name">
+                *Name:
+              </label>
+              <input type="text"
+                     class="form-control col-8 mt-1"
+                     formControlName="name"
+                     id="name"
+                     placeholder="First name">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched">
+                invalid field name!
+              </div>
+            </div>
+
+            <div class="form-group 	col-12 mt-1">
+              <label class="col-8 m1 mt-2"
+                     for="lastName">
+                *Sure name:
+              </label>
+              <input type="text"
+                     class="form-control col-10 mt-1"
+                     formControlName="lastName"
+                     id="lastName"
+                     placeholder="Last name">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['lastName'].invalid && profileForm.controls['lastName'].touched">
+                invalid field last name!
+              </div>
+            </div>
+
+            <div class="form-group 	col-12-mt-1">
+              <label class="col-8 m1 mt-2"
+                     for="email">
+                *Email:
+              </label>
+              <input type="email"
+                     class="form-control col-10 mt-1"
+                     formControlName="email"
+                     id="email"
+                     placeholder="some@gmail.com">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['email'].invalid && profileForm.controls['email'].touched">
+                invalid field email!
+              </div>
+
+            </div>
+
+            <div class="form-group 	col-12">
+              <label class="col-8 m1 mt-2"
+                     for="password">
+                *Password:
+              </label>
+              <input type="text"
+                     class="form-control col-10 mt-1"
+                     formControlName="password"
+                     id="password"
+                     placeholder="password">
+              <div class="alert alert-danger"
+                   *ngIf="profileForm.controls['password'].invalid && profileForm.controls['password'].touched">
+                invalid field password!
+              </div>
+            </div>
+
+            <div class="mt-4 col-12 d-flex justify-content-end">
+              <button type="button"
+                      class="btn btn-secondary col-2 me-2"
+                      data-bs-dismiss="modal"
+                      [hidden]="modalValue.modalFlag==='update'"
+                      (click)="resetEditedUser()">
+                Close
+              </button>
+              <button type="submit"
+                      [disabled] ="!profileForm.valid"
+                      class="btn btn-primary col-2">
+                {{modalSettings.button_title}}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
