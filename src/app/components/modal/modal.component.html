@@ -37,12 +37,12 @@
               </label>
               <input type="text"
                      class="form-control col-8 mt-1"
-                     formControlName="name"
+                     formControlName="firstName"
                      id="name"
                      placeholder="First name">
 
               <div class="alert alert-danger"
-                   *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched">
+                   *ngIf="profileForm.controls['firstName'].invalid && profileForm.controls['firstName'].touched">
                 invalid field name!
               </div>
 

@@ -1,26 +1,38 @@
-<td class="col-1 pt-3">{{user.Id}}</td>
-<td class="col-2 pt-3">{{user.FirstName}}</td>
-<td class="col-2 pt-3">{{user.LastName}}</td>
-<td class="col-2 pt-3">{{user.Email}}</td>
-<td class="col-3 pt-3">{{user.Password}}</td>
-<td class="col-1">
-  <div class="row justify-content-end">
-    <button type="button"
-            class="btn btn-danger me-2"
-            (click)="deleteUser(user.Id)">
-      delete
-    </button>
+<div class="container-fluid">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-10">
+        <div class="row" (click)="redirectToUser()">
+          <div class="col-1 pt-3">{{user.Id}}</div>
+          <div class="col-2 pt-3">{{user.FirstName}}</div>
+          <div class="col-2 pt-3">{{user.LastName}}</div>
+          <div class="col-3 pt-3">{{user.Email}}</div>
+          <div class="col-2 pt-3">{{user.Password}}</div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="row">
+          <div class="col-6" (click)="deleteUser(user.Id)">
+            <div class="row justify-content-end">
+              <button type="button" class="btn btn-danger me-2 col 12">
+                delete
+              </button>
+            </div>
+          </div>
+          <div class="col-6 " (click)="createEditingModel()">
+            <div class="row justify-content-end">
+              <button type="button" class="btn btn-dark me-2 "
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop">
+                edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</td>
-<td class="col-1">
-  <div class="row justify-content-end">
-    <button type="button" class="btn btn-dark me-2"
-            data-bs-toggle="modal"
-            (click)="createEditingModel()"
-            data-bs-target="#staticBackdrop">
-      edit
-    </button>
-  </div>
-</td>
+</div>
 
 

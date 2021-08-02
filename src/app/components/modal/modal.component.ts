@@ -6,6 +6,7 @@ import {ModalService} from "../../service/modal/modal.service";
 import {ModalValue} from "../../model/modalValue";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Validator} from "../../service/form-validators/validator";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-modal',
@@ -13,19 +14,20 @@ import {Validator} from "../../service/form-validators/validator";
   styleUrls: ['./modal.component.css'],
 })
 
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
+
   // константа яку ми інжектимо для модального вікна
   modalSettings: ModalWindowSettings;
 
   //значення та цільове призначення модального вікна
   modalValue: ModalValue;
 
-  //створюємо модель юзера якого редагуємо чи створюємо
+  //id юзера якого редагуємо
   userID: number;
 
   //профіль форми яку використовуемо для додавання юзерів
   profileForm = new FormGroup({
-    name: new FormControl('', [
+    firstName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(20),
@@ -74,10 +76,10 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     //витягуємо з сервіса активну модель юзера по підписці та передаємо в форму для редагування
     // та включаємо режим редагування нашій константі
-    this.userService.user.subscribe((user: any) => {
+    this.userService.userModelForEditForm.subscribe((user: any) => {
       this.userID = user.Id;
       this.modalSettings = this.config.update;
-      this.profileForm.controls["name"].setValue(user.FirstName);
+      this.profileForm.controls["firstName"].setValue(user.FirstName);
       this.profileForm.controls["lastName"].setValue(user.LastName);
       this.profileForm.controls["email"].setValue(user.Email);
       this.profileForm.controls["password"].setValue(user.Password);
@@ -100,10 +102,10 @@ export class ModalComponent implements OnInit {
   */
   submit() {
     if (this.modalValue.modalFlag === 'create') {
-      this.userService.addUser(this.profileForm.value).subscribe();
+      this.userService.addUser(this.profileForm.value);
 
     } else if (this.modalValue.modalFlag === 'update') {
-      this.userService.updateUser(this.userID, this.profileForm.value).subscribe();
+      this.userService.updateUser(this.userID, this.profileForm.value);
     }
     this.resetUser();
   }
@@ -112,5 +114,10 @@ export class ModalComponent implements OnInit {
   resetUser() {
     this.userID = 0;
     this.profileForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.userService.userModelForEditForm.unsubscribe();
+    this.modalService.modalSubject.unsubscribe();
   }
 }
