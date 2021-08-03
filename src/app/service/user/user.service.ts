@@ -17,7 +17,7 @@ export class UserService {
   public userModelForRouter = new ReplaySubject<User>();
 
   //створюємо підписку на список юзерів
-  public usersSubscription = new Subject<User[]>();
+  public usersSubscription = new Subject<any>();
 
   public userlist: User[] = [];
 
@@ -29,11 +29,11 @@ export class UserService {
 
   // повертає всіх юзерів у компонент
   getUsersData(par:number): Observable<User[]> | Promise<any> {
-    return this.http.get<User[]>(`http://localhost:3000/users/${JSON.stringify(par)}`)
+    return this.http.get<any>(`http://localhost:3000/users/${JSON.stringify(par)}`)
       .toPromise()
       .then((res) => {
-        this.userlist = res;
-        return this.usersSubscription.next(this.userlist);
+        this.userlist = res.rows;
+        return this.usersSubscription.next({ul:this.userlist,lh:res.length});
       })
       .catch(err => throwError(err))
   }
