@@ -37,7 +37,7 @@ export class UserTableRowComponent implements OnDestroy{
   }
 
   redirectToUser() {
-    this.router.navigate([`/user/:${this.user.Id}`])
+    this.router.navigate([`/user/${this.user.Id}/`])
       .then(()=>{this.userService.createUserModelForRoutes(this.user)})
       .catch(err =>throwError(err));
   }

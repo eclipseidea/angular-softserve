@@ -2,7 +2,7 @@ import {
   Component,
   HostListener,
   OnDestroy,
-  OnInit, ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import {UserService} from "../../service/user/user.service";
 import {ModalService} from "../../service/modal/modal.service";
